@@ -1,0 +1,142 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Colors */
+    --main-color: #51698d;
+    --secondary-color: #e4d9b1;
+    --background-color: #fff6ea;
+
+    --accent-color: #4f4ca5;
+    --warning-color: #865534;
+    --error-color: #863434;
+
+    /* Spaces */
+    --ps: 8px;
+    --ms: 12px;
+    --ls: 24px;
+
+    /* Round */
+    --lsoft: 4px;
+    --soft: 8px;
+    --msoft: 12px;
+}
+
+body {
+    background-color: var(--background-color);
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+header {
+    width: 100%;
+    height: 80px;
+    padding: 0px var(--ls);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    color: var(--background-color);
+    background-color: var(--main-color);
+}
+
+.brand-content{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: var(--ms);
+}
+
+.search-bar-container {
+    width: 25%;
+}
+
+.search-bar-container input {
+    width: 100%;
+    padding: var(--ps);
+    border-radius: var(--msoft);
+    outline: none;
+    border: none;
+}
+
+.logo-container {
+    width: 65px;
+    height: 65px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: var(--background-color);
+}
+
+.logo-container img {
+    width: 100%;
+    object-fit: contain;
+}
+
+.container {
+    width: 70%;
+    height: auto;
+    margin: var(--ls) 0px;
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.cards-section {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cards {
+    width: 23%;
+    height: auto;
+    padding: var(--ms);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: var(--soft);
+    background-color: var(--secondary-color);
+    box-shadow: 5px 5px 10px #00000069;
+    transition: .2s ease-in-out;
+}
+
+.cards:hover{
+    filter: brightness(110%);
+    transform: translateY(-4px);
+}
+
+.cards a{
+    text-decoration: none;
+    color: var(--error-color);
+}
+
+.cards-image-container {
+    width: 200px;
+    height: auto;
+}
+
+.cards-image-container img {
+    width: 100%;
+    object-fit: contain;
+}
+
+footer{
+    width: 100%;
+    height: auto;
+    position: fixed;
+    bottom: 0px;
+    padding: var(--ms);
+    text-align: center;
+    color: var(--background-color);
+    background-color: var(--main-color);
+}

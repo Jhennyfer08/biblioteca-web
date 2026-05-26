@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/registers.css">
+    <title>Cadastro Biblioteca</title>
+</head>
+
+<body>
+    <header>
+        <div class="brand-content">
+            <a href="./index.html">
+                <div class="logo-container">
+                    <img src="../img/lib-logo.png" alt="Logo da biblioteca Lib Go">
+                </div>
+            </a>
+            <h1>Lib.Go</h1>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <section class="form-section">
+            <form action="" class="form">
+
+                <div class="form-group" id="isbn">
+                    <label for="inputIsbn"> ISBN:</label>
+                    <input type="text" id="inputIsbn" required>
+                </div>
+
+                <div class="form-group" id="title">
+                    <label for="inputTitle"> Título:</label>
+                    <input type="text" id="inputTitle" required>
+                </div>
+
+                <div class="form-group" id="year">
+                    <label for="inputYear"> Ano de Lançamento:</label>
+                    <input type="text" id="inputYear" required>
+                </div>
+
+                <div class="form-group" id="Pages">
+                    <label for="inputPages"> Número de páginas:</label>
+                    <input type="text" id="inputPages" required>
+                </div>
+
+                <div class="form-group" id="author">
+                    <label for="inputAuthor"> Autor(a):</label>
+                    <select id="inputAuthor">
+                        <option value="#" selected disabled>Selecione um(a) autor(a)</option>
+                        <option value="">Autor 1</option>
+                        <option value="">Autor 2</option>
+                        <option value="">Autor 3</option>
+                        <option value="">Autor 4</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="genre">
+                    <label for="inputGenre"> Gêneros:</label>
+                    <select id="inputGenre">
+                        <option value="#" selected disabled>Selecione os gêneros</option>
+                        <option value="">Gênero 1</option>
+                        <option value="">Gênero 2</option>
+                        <option value="">Gênero 3</option>
+                        <option value="">Gênero 4</option>
+                    </select>
+                </div>
+            </form>
+        </section>
+    </main>
+
+
+    <footer>
+        <p>"Compartilhar não é imoral, é um imperativo moral."— Aaron Swartz</p>
+        <p>&copy; copyrights reserveds to Lib.Go</p>
+    </footer>
+</body>
+
+</html>
