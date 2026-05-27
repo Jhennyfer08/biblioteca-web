@@ -80,8 +80,7 @@ async function insertBooks(row, idAuthor) {
             ?,
             ?,
             ?
-        )
-    `;
+        )`;
 
     params = [
         normalize(row[2]),

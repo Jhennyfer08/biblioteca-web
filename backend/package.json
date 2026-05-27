@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "main": "./index.js",
     "scripts": {
-        "start": "node ./js/main.js"
+        "start": "node ./js/server.js"
     },
     "keywords": [],
     "author": "",
@@ -11,6 +11,7 @@
     "type": "module",
     "description": "",
     "dependencies": {
+        "express": "^5.2.1",
         "mysql2": "^3.22.3"
     }
 }

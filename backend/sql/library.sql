@@ -47,3 +47,49 @@ CREATE TABLE IF NOT EXISTS books(
 -- WHERE 
 --     name = 'albert';
 
+-- SELECT 
+--     books.id,
+--     isbn,
+--     title,
+--     author,
+--     name,
+--     year,
+--     pages
+-- FROM 
+--     books 
+-- JOIN 
+--     authors 
+-- ON 
+--     books.author = authors.id
+-- LIMIT 
+--     20;
+
+INSERT INTO books(
+    isbn,
+    title,
+    author,
+    name,
+    year,
+    pages
+) VALUES (
+    ?,
+    ?,
+    ?,
+    ?,
+    ?,
+    ?
+);
+
+SELECT 
+    isbn,
+    title,
+    author,
+    year,
+    pages
+FROM 
+    books 
+WHERE
+    id = 10415;
+
+
+DELETE FROM books WHERE id= 10417;
