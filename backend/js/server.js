@@ -18,30 +18,30 @@ app.post('/hello', async (req, res) => {
     });
 });
 
-// app.get('/books', async (req, res) => {
-//     let query = `
-//         SELECT 
-//             books.id,
-//             isbn,
-//             title,
-//             author,
-//             name,
-//             year,
-//             pages
-//         FROM 
-//             books 
-//         JOIN 
-//             authors 
-//         ON 
-//             books.author = authors.id
-//         LIMIT 
-//             20
-//     `;
+app.get('/books', async (req, res) => {
+    let query = `
+        SELECT 
+            books.id,
+            isbn,
+            title,
+            author,
+            name,
+            year,
+            pages
+        FROM 
+            books 
+        JOIN 
+            authors 
+        ON 
+            books.author = authors.id
+        LIMIT 
+            20
+    `;
 
-//     let result = await executeQuery(query);
+    let result = await executeQuery(query);
 
-//     res.send(result[0]);
-// });
+    res.send(result[0]);
+});
 
 app.post('/books', async (req, res) => {
     let query = `
@@ -71,12 +71,6 @@ app.post('/books', async (req, res) => {
     let result = await executeQuery(query, params);
     res.send({ insertId: result[0].insertId});
 });
-
-"0192837465",
-        "Quarto de Despejo",
-        "Carolina Maria de Jesus",
-        2011,
-        542
 
 app.get('/teste', async (req, res) => {
     let query = `
