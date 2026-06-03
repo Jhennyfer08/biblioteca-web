@@ -1,97 +1,29 @@
 import express from 'express';
-import executeQuery from './db.js';
+import {Books} from './classes/books.js';
 await process.loadEnvFile('.env');
 
 const app = express();
 app.use(express.json());
 
-app.get('/hello', async (req, res) => {
-    res.send({
-        status: 'Hello World'
-    });
-});
-
-app.post('/hello', async (req, res) => {
-    let name = req.body.name;
-    res.send({
-        status: `Hello ${name}`
-    });
-});
 
 app.get('/books', async (req, res) => {
-    let query = `
-        SELECT 
-            books.id,
-            isbn,
-            title,
-            author,
-            name,
-            year,
-            pages
-        FROM 
-            books 
-        JOIN 
-            authors 
-        ON 
-            books.author = authors.id
-        LIMIT 
-            20
-    `;
-
-    let result = await executeQuery(query);
-
-    res.send(result[0]);
+    const books = await Books.selectBooks();
+    res.send(books);
 });
 
 app.post('/books', async (req, res) => {
-    let query = `
-        INSERT INTO books(
-            isbn,
-            title,
-            author,
-            year,
-            pages
-        ) VALUES (
-            ?,
-            ?,
-            ?,
-            ?,
-            ?
-        )
-   `;
 
-    let params = [
-        req.body.isbn,                
-        req.body.title,
-        req.body.author,
-        req.body.year,
-        req.body.pages
-    ];
-
-    let result = await executeQuery(query, params);
-    res.send({ insertId: result[0].insertId});
+    const body = req.body
+    const book = new Books(body);
+    await book.insertBooks();
+    res.send(
+        { insertId: book.id}
+    );
 });
-
-app.get('/teste', async (req, res) => {
-    let query = `
-        SELECT 
-            isbn,
-            title,
-            author,
-            year,
-            pages
-        FROM 
-            books 
-        WHERE
-            id = 10415
-    `;
-
-    let result = await executeQuery(query);
-    res.send(result[0]);
-})
 
 
 const port = 3000;
 app.listen(port, () => {
     console.log(`Server running on port: http://localhost:${port}`);
 });
+

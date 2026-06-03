@@ -19,4 +19,4 @@ async function readCSV(filePath) {
 //     console.log(line.split(';'));
 // });
 
-export default readCSV;
+export {readCSV};

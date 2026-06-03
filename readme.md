@@ -29,6 +29,7 @@ winget install --id Git.Git -e --source winget
 - **Material Icon Theme**: Estilizar a estrutura de pastas, para facilitar a compreensão visual.
 - **Thunder Client** ou **Postman**:  Simular o cliente executando requisições no servidor.
 - **Code Runner** : Opção gráfica para executar os scripts.
+- **GitLens**: Visibilidade para versionamento do projeto.
 
 
 ### 3. Primeiras Configurações
@@ -60,6 +61,12 @@ npm install
 git  config --global user.email "example@gmail.com"
 git  config --global user.name "Your Name"
 ```
+
+### Package.json Config
+```
+    "start": "node --watch ./js/server.js"
+```
+- A tag **--watch** server para não precisar reiniciar o servidor manualmente.
 
 ## Novos horizontes:
 - Documentação: Diagramas Mermaid

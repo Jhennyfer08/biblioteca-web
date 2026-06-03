@@ -26,4 +26,4 @@ async function executeQuery(query, params = []) {
     }
 }
 
-export default executeQuery;
+export {executeQuery};

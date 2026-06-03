@@ -1,5 +1,5 @@
-import executeQuery from "./db.js";
-import readCSV from './read.js';
+import {executeQuery} from "./db.js";
+import {readCSV} from './read.js';
 await process.loadEnvFile('.env');
 
 function normalize(text) {
