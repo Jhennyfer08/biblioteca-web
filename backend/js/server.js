@@ -16,9 +16,9 @@ app.post('/books', async (req, res) => {
     const body = req.body
     const book = new Books(body);
     await book.insertBooks();
-    res.send(
-        { insertId: book.id }
-    );
+    res.send({
+        message: `Livro ${book.id} cadastrado com sucesso.`
+    });
 });
 
 app.delete('/books/:id', async (req, res) => {
