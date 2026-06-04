@@ -1,5 +1,5 @@
 import express from 'express';
-import {Books} from './classes/books.js';
+import { Books } from './classes/books.js';
 await process.loadEnvFile('.env');
 
 const app = express();
@@ -17,8 +17,33 @@ app.post('/books', async (req, res) => {
     const book = new Books(body);
     await book.insertBooks();
     res.send(
-        { insertId: book.id}
+        { insertId: book.id }
     );
+});
+
+app.delete('/books/:id', async (req, res) => {
+    const book = new Books({
+        id: req.params.id
+    });
+
+    await book.deleteBooks();
+
+    res.send({
+        message: `Livro ${book.id} excluído com sucesso.`
+    });
+});
+
+app.put('/books/:id', async (req, res) => {
+    const book = new Books({
+        id: req.params.id,
+        ...req.body
+    });
+
+    await book.updateBooks();
+
+    res.send({
+        message: `Livro ${book.id} atualizado com sucesso.`
+    });
 });
 
 
@@ -26,4 +51,3 @@ const port = 3000;
 app.listen(port, () => {
     console.log(`Server running on port: http://localhost:${port}`);
 });
-

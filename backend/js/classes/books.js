@@ -1,7 +1,7 @@
 import { executeQuery } from "../db.js";
 
 class Books {
-    constructor({id = null, isbn, title, author, year, pages}) {
+    constructor({ id = null, isbn, title, author, year, pages }) {
         this.id = id;
         this.isbn = isbn;
         this.title = title;
@@ -117,12 +117,58 @@ class Books {
             this.normalize(this.title),
             authorId,
             this.normalize(this.year),
-            this.normalize(this.pages)
+            this.pages
         ];
 
         let result = await executeQuery(query, params);
         this.id = result[0].insertId;
     }
+
+    async deleteBooks() {
+        let query = `
+
+            DELETE FROM 
+                books
+            WHERE 
+                id = ?
+        `;
+
+        let params = [this.id];
+
+        await executeQuery(query, params);
+    }
+
+    async updateBooks() {
+        let authorId = await this.selectAuthor();
+
+        if (!authorId) {
+            authorId = await this.insertAuthor();
+        }
+
+        let query = `
+            UPDATE 
+                books
+            SET 
+                isbn = ?,
+                title = ?,
+                author = ?,
+                year = ?,
+                pages = ?
+            WHERE 
+                id = ?
+        `;
+
+        let params = [
+            this.normalize(this.isbn),
+            this.normalize(this.title),
+            authorId,
+            this.normalize(this.year),
+            this.pages,
+            this.id
+        ];
+
+        await executeQuery(query, params);
+    }
 }
 
-export {Books};
+export { Books };

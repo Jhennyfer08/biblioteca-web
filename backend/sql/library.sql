@@ -1,27 +1,38 @@
 -- Active: 1779923739318@@127.0.0.1@3306@mysql
 DROP DATABASE IF EXISTS library;
+
 CREATE DATABASE IF NOT EXISTS library;
+
 USE library;
 
-
-CREATE TABLE IF NOT EXISTS authors(
+CREATE TABLE IF NOT EXISTS authors (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(250) NOT NULL UNIQUE 
+    name VARCHAR(250) NOT NULL UNIQUE
 )
 
-CREATE TABLE IF NOT EXISTS books(
+CREATE TABLE IF NOT EXISTS books (
     id INT PRIMARY KEY AUTO_INCREMENT,
     isbn VARCHAR(16) NOT NULL UNIQUE,
     title VARCHAR(250) NOT NULL,
     year CHAR(4),
     pages INT,
     author INT NOT NULL,
-
-    FOREIGN KEY (author) REFERENCES authors(id) 
+    FOREIGN KEY (author) REFERENCES authors (id)
 );
 
+UPDATE 
+    books
+SET
+    isbn = ?,
+    title = ?,
+    author = ?,
+    year = ?,
+    page = ?
+WHERE
+    id = ?;
+
 -- INSERT INTO authors(
---     name 
+--     name
 -- ) VALUES (
 --     ?
 -- );
@@ -39,15 +50,15 @@ CREATE TABLE IF NOT EXISTS books(
 --     ?
 -- );
 
--- SELECT 
---     id, 
---     name 
--- FROM 
+-- SELECT
+--     id,
+--     name
+-- FROM
 --     authors
--- WHERE 
+-- WHERE
 --     name = 'albert';
 
--- SELECT 
+-- SELECT
 --     books.id,
 --     isbn,
 --     title,
@@ -55,41 +66,29 @@ CREATE TABLE IF NOT EXISTS books(
 --     name,
 --     year,
 --     pages
--- FROM 
---     books 
--- JOIN 
---     authors 
--- ON 
+-- FROM
+--     books
+-- JOIN
+--     authors
+-- ON
 --     books.author = authors.id
--- LIMIT 
+-- LIMIT
 --     20;
 
-INSERT INTO books(
-    isbn,
-    title,
-    author,
-    name,
-    year,
-    pages
-) VALUES (
-    ?,
-    ?,
-    ?,
-    ?,
-    ?,
-    ?
-);
+INSERT INTO
+    books (
+        isbn,
+        title,
+        author,
+        name,
+        year,
+        pages
+    )
+VALUES (?, ?, ?, ?, ?, ?);
 
-SELECT 
-    isbn,
-    title,
-    author,
-    year,
-    pages
-FROM 
-    books 
+SELECT isbn, title, author, year, pages
+FROM books
 WHERE
     id = 10415;
 
-
-DELETE FROM books WHERE id= 10417;
+DELETE FROM books WHERE id = 10417;
