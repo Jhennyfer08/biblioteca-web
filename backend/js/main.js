@@ -1,9 +1,9 @@
-import {executeQuery} from "./db.js";
-import {readCSV} from './read.js';
+import { executeQuery } from "./db.js";
+import { readCSV } from './read.js';
 await process.loadEnvFile('.env');
 
 function normalize(text) {
-    
+
     try {
         text = text.trim();
         text = text === "" ? null : text;
@@ -93,7 +93,7 @@ async function insertBooks(row, idAuthor) {
     await executeQuery(query, params);
 }
 
-async function main() {
+async function insertDatabase() {
     let fileContent = await readCSV('./csv/livros.csv');
     let idAuthor;
     fileContent.shift();
@@ -113,4 +113,34 @@ async function main() {
     };
 }
 
-await main();
+async function insertServer() {
+    let fileContent = await readCSV('./csv/livros.csv');
+    let idAuthor;
+    fileContent.shift();
+
+
+    for (let row of fileContent) {
+
+        row = row.split(';');
+
+        let response = await fetch('http://localhost:3000/books',
+        {
+            method: "POST",
+            headers: {
+                "Content-type": "Application/json"
+            },
+            body: JSON.stringify({
+                "isbn": normalize(row[2]),
+                "title": normalize(row[0]),
+                "author": normalize(row[1]),
+                "year": normalize(row[4]),
+                "pages": row[3]
+            })
+        });
+
+        let result = await response.json();
+        console.log(result.message);
+    };
+}
+
+await insertServer();

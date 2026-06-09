@@ -30,6 +30,7 @@ winget install --id Git.Git -e --source winget
 - **Thunder Client** ou **Postman**:  Simular o cliente executando requisições no servidor.
 - **Code Runner** : Opção gráfica para executar os scripts.
 - **GitLens**: Visibilidade para versionamento do projeto.
+- **Rainbow CSV**: Melhora a visibilidade dos arquivos csv presentes no projeto.
 
 
 ### 3. Primeiras Configurações
@@ -64,7 +65,7 @@ git  config --global user.name "Your Name"
 
 ### Package.json Config
 ```
-    "start": "node --watch ./js/server.js"
+  "start": "node --watch ./js/server.js"
 ```
 - A tag **--watch** server para não precisar reiniciar o servidor manualmente.
 

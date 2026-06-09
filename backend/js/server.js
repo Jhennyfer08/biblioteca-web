@@ -2,6 +2,7 @@ import express from 'express';
 import { Books } from './classes/books.js';
 await process.loadEnvFile('.env');
 
+
 const app = express();
 app.use(express.json());
 
@@ -15,10 +16,18 @@ app.post('/books', async (req, res) => {
 
     const body = req.body
     const book = new Books(body);
-    await book.insertBooks();
-    res.send({
-        message: `Livro ${book.id} cadastrado com sucesso.`
-    });
+    
+    try {
+        await book.insertBooks();
+        res.send({
+            message: `Livro ${book.id} cadastrado com sucesso.`
+        });
+    } catch (error) {
+        res.send({
+            message: `Não foi possível cadastrar.`
+        });
+    }
+
 });
 
 app.delete('/books/:id', async (req, res) => {

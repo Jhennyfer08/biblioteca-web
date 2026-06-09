@@ -20,16 +20,16 @@ CREATE TABLE IF NOT EXISTS books (
     FOREIGN KEY (author) REFERENCES authors (id)
 );
 
-UPDATE 
-    books
-SET
-    isbn = ?,
-    title = ?,
-    author = ?,
-    year = ?,
-    page = ?
-WHERE
-    id = ?;
+-- UPDATE 
+--     books
+-- SET
+--     isbn = ?,
+--     title = ?,
+--     author = ?,
+--     year = ?,
+--     page = ?
+-- WHERE
+--     id = ?;
 
 -- INSERT INTO authors(
 --     name
