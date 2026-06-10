@@ -1,9 +1,10 @@
 import express from 'express';
 import { Books } from './classes/books.js';
+import cors from "cors";
 await process.loadEnvFile('.env');
 
-
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 
@@ -16,7 +17,7 @@ app.post('/books', async (req, res) => {
 
     const body = req.body
     const book = new Books(body);
-    
+
     try {
         await book.insertBooks();
         res.send({

@@ -72,6 +72,57 @@ git  config --global user.name "Your Name"
 
 ---
 
+# Configuração do Frontend
+
+- **Vite**: Criar a pasta /frontend com o React no projeto
+```bash 
+ npm create vite@latest frontend -y
+```
+ou
+```bash 
+ npm create vite@latest frontend -- --template
+```
+- Selecionar React e depois Javascript.
+
+- No terminal:
+```bash
+   cd ./frontend
+```
+Instala as dependências do vite:
+```bash
+ npm i 
+```
+Executa o servidor:
+```bash
+ npm run dev
+```
+
+### Apagar os arquivos de /frontend:
+  - .gitignore
+  - README.md
+  - eslint.config.js
+  - ./src/assets
+  - ./src/App.css
+  - public/** 
+
+
+### Limpar arquivos: 
+- App.jsx 
+```js
+export default function App() {
+  
+  return (
+    <>
+    </>
+  )
+}
+```
+- index.css
+```
+```
+
+---
+
 # API de Livros
 
 API REST desenvolvida em Node.js e Express para gerenciamento de livros e autores.
@@ -211,9 +262,6 @@ DELETE http://localhost:3000/books/10
 
 ## Novos horizontes:
 - Documentação: Diagramas Mermaid
-- Backend: Orientação à Objetos (Books)
-    - funcionalidade de cadastrar livro junto com o autor.
-    - funcionalidade de consultar, alterar e excluir livro pelo id. 
 - Frontend: Criar o Frontend para exibir livros.
-    - Avaliar Frameworks de Frontend (Vue.js React e Angular).
 - Projeto: Prototipação em Figma.  
+- Testes: Automatizados com JUnit.
