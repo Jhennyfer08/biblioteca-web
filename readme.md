@@ -121,6 +121,17 @@ export default function App() {
 ```
 ```
 
+### Bibliotecas do NPM
+
+- **Material UI React**: Componentes para o React
+```
+  npm install @mui/material @emotion/react @emotion/styled
+```
+- **React Icons**: Ícones para o React
+```
+  npm install react-icons
+```
+
 ---
 
 # API de Livros
