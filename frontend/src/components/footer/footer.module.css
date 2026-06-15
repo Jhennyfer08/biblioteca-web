@@ -1,0 +1,43 @@
+.footerContainer {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 100%;
+    bottom: 0px;
+    margin-top: var(--space-64px);
+    padding: var(--space-32px) 15%;
+    padding-top: var(--space-64px);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    justify-content: space-between;
+    gap: var(--space-12px);
+    background-color: var(--primary-color);
+}
+
+.footerContainer a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.contactIcon {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-24px);
+    font-size: 25px;
+}
+
+.footerInfo {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-24px);
+    white-space: nowrap;
+}
+
+.footerCopyRight {
+    display: flex;
+    justify-content: center;
+    white-space: nowrap;
+    color: #ffffff71;
+}

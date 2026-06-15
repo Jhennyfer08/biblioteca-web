@@ -6,7 +6,7 @@ async function readCSV(filePath) {
         fileContent = fileContent.split('\n');
         return fileContent;
     } catch (error) {
-        console.log(`Identified error on readCSVCSV: ${error}`);
+        console.log(`Identified error on readCSV: ${error}`);
     }
 }
 
