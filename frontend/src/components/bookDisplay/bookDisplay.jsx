@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import styles from './bookDisplay.module.css';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function BookDisplay() {
@@ -14,13 +15,24 @@ export default function BookDisplay() {
 
                 setBooks(data);
             } catch (error) {
-
                 console.error('Erro ao buscar livros:', error);
             }
         }
 
         loadBooks();
     }, []);
+
+    async function deleteBook(id) {
+        try {
+            const response = await fetch(`http://localhost:3000/books/${id}`, { method: 'DELETE' });
+
+            setBooks(prev =>
+                prev.filter(book => book.id !== id)
+            );
+        } catch (error) {
+            console.error('Erro ao excluir livros, livro não encontrado:', error);
+        }
+    }
 
     return (
         <div className={styles.tableContainer}>
@@ -42,15 +54,15 @@ export default function BookDisplay() {
 
                         <tr key={book.id}>
                             <td>{book.isbn}</td>
-                            <td>{book.author}</td>
                             <td>{book.title}</td>
+                            <td>{book.name}</td>
                             <td>{book.year}</td>
                             <td>{book.pages}</td>
                             <td>
-                                <button className={styles.btn} id={styles.editBtn}>Editar</button>
+                                <button className={styles.btn} id={styles.editBtn} onClick={() => Navigate(`/edit/${book.id}`)}>Editar</button>
                             </td>
                             <td>
-                                <button className={styles.btn} id={styles.deleteBtn}>Excluir</button>
+                                <button className={styles.btn} id={styles.deleteBtn} onClick={() => deleteBook(book.id)}>Excluir</button>
                             </td>
                         </tr>
                     ))}

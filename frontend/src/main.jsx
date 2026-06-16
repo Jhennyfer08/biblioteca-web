@@ -18,6 +18,10 @@ const pages = createBrowserRouter([
     path: '/book-register',
     element: <Register/>
   },
+  {
+    path: '/book-update',
+    element: <Register/>
+  },
 ])
 
 createRoot(document.getElementById('root')).render(
