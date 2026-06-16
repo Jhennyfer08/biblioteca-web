@@ -19,9 +19,9 @@ const pages = createBrowserRouter([
     element: <Register/>
   },
   {
-    path: '/book-update',
+    path: '/book-update/:id',
     element: <Register/>
-  },
+  }
 ])
 
 createRoot(document.getElementById('root')).render(

@@ -1,9 +1,12 @@
 import styles from './register.module.css'
 import Header from '../../components/header/header.jsx'
 import Footer from '../../components/footer/footer.jsx'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+
 
 export default function Register() {
+    const navigate = useNavigate();
 
     const [isbn, setIsbn] = useState('');
     const [title, setTitle] = useState('');
@@ -11,10 +14,12 @@ export default function Register() {
     const [year, setYear] = useState('');
     const [pages, setPages] = useState('');
 
+    const { id } = useParams();
+
     async function handleSubmit(event) {
 
         event.preventDefault();
-        
+
         const book = {
             isbn,
             title,
@@ -29,7 +34,7 @@ export default function Register() {
                 {
                     method: 'POST',
                     headers: {
-                        'Content-Type' : 'application/json'
+                        'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(book)
                 }
@@ -39,27 +44,83 @@ export default function Register() {
 
             console.log(data);
             alert('Livro cadastrado com sucesso!');
+            navigate('/');
         } catch (error) {
             console.error(error);
         }
     }
 
-    // async function editarBook(id, updateBook) {
-    //     try {
-    //         const response = await fetch(
-    //             `http://localhost:3000/books/${id}`,
-    //             {
-    //                 method: 'PUT',
-    //                 headers: {
-    //                     'Content-Type': 'application/json',
-    //                 },
-    //                 body: JSON.stringfy(updateBook)
-    //             }
-    //         )
-    //     } catch (error) {
-            
-    //     }
-    // }
+    useEffect(() => {
+
+        if (!id) return;
+
+        async function loadBook() {
+
+            console.log('ID:', id);
+
+            try {
+
+                const response = await fetch(
+                    `http://localhost:3000/books/${id}`
+                );
+
+                const dataArray = await response.json();
+                const data = dataArray[0]
+
+                console.log('Livro recebido:', data);
+
+                setIsbn(data.isbn);
+                setTitle(data.title);
+                setAuthor(data.name);
+                setYear(data.year);
+                setPages(data.pages);
+
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        loadBook();
+
+    }, [id]);
+
+    async function updateBook(event) {
+
+        event.preventDefault();
+
+        const book = {
+            isbn,
+            title,
+            author,
+            year,
+            pages
+        };
+
+        try {
+
+            const response = await fetch(
+                `http://localhost:3000/books/${id}`,
+                {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(book)
+                }
+            )
+
+            if (!response.ok) {
+                throw new Error('Erro ao atualizar livro');
+            }
+
+            const data = await response.json();
+            alert('Livro atualizado com sucesso!');
+            navigate('/');
+
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
     return (
         <>
@@ -69,7 +130,7 @@ export default function Register() {
 
                 <div className={styles.formContainer}>
 
-                    <form action="" className={styles.form} onSubmit={handleSubmit}>
+                    <form action="" className={styles.form} onSubmit={id ? updateBook : handleSubmit}>
 
                         <article className={styles.formGroup}>
                             <label htmlFor={styles.isbnInput}>ISBN: </label>
@@ -101,7 +162,7 @@ export default function Register() {
                             <span></span>
                         </article>
 
-                        <button className={styles.btn}> Register</button>
+                        <button className={styles.btn}> {id ? 'Update' : 'Register'}</button>
                     </form>
 
                 </div>

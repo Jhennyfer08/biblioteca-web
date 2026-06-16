@@ -1,3 +1,4 @@
+import { response } from "express";
 import { executeQuery } from "../db.js";
 
 class Books {
@@ -88,6 +89,40 @@ class Books {
 
         let result = await executeQuery(query);
         return result[0];
+    }
+
+    async selectBookById() {
+        let query = `
+            SELECT 
+                B.id,
+                isbn,
+                title,
+                author,
+                name,
+                year,
+                pages 
+            FROM
+                books B
+            JOIN
+                authors A
+            ON
+                B.author = A.id
+            WHERE
+                B.id = ?
+            LIMIT 
+                1
+        `;
+
+        let params = [
+            this.id
+        ];
+
+        try { 
+            let result = await executeQuery(query, params);
+            return result[0];
+        } catch (error) {
+            return null;
+        }
     }
 
     async insertBooks() {

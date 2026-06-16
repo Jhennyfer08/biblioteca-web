@@ -123,23 +123,32 @@ async function insertServer() {
 
         row = row.split(';');
 
-        let response = await fetch('http://localhost:3000/books',
-        {
-            method: "POST",
-            headers: {
-                "Content-type": "Application/json"
-            },
-            body: JSON.stringify({
-                "isbn": normalize(row[2]),
-                "title": normalize(row[0]),
-                "author": normalize(row[1]),
-                "year": normalize(row[4]),
-                "pages": row[3]
-            })
-        });
+        try {
+            let response = await fetch('http://localhost:3000/books',
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        "isbn": normalize(row[2]),
+                        "title": normalize(row[0]),
+                        "author": normalize(row[1]),
+                        "year": normalize(row[4]),
+                        "pages": row[3]
+                    })
+                });
 
-        let result = await response.json();
-        console.log(result.message);
+
+            let result = await response.json();
+            console.log(result.message);
+
+        } catch (error) {
+
+            console.error("Livro:", row);
+            console.error(error);
+
+        }
     };
 }
 

@@ -13,6 +13,15 @@ app.get('/books', async (req, res) => {
     res.send(books);
 });
 
+app.get('/books/:id', async (req, res) => {
+    const book = new Books({
+        id: req.params.id
+    });
+
+    const response = await book.selectBookById();
+    res.send(response);
+});
+
 app.post('/books', async (req, res) => {
 
     const body = req.body

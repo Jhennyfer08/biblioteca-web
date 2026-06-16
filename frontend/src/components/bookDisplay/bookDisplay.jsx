@@ -34,6 +34,8 @@ export default function BookDisplay() {
         }
     }
 
+    const navigate = useNavigate();
+
     return (
         <div className={styles.tableContainer}>
             <table>
@@ -59,7 +61,8 @@ export default function BookDisplay() {
                             <td>{book.year}</td>
                             <td>{book.pages}</td>
                             <td>
-                                <button className={styles.btn} id={styles.editBtn} onClick={() => Navigate(`/edit/${book.id}`)}>Editar</button>
+
+                                <button className={styles.btn} id={styles.editBtn} onClick={() => navigate(`/book-update/${book.id}`)}>Editar</button>
                             </td>
                             <td>
                                 <button className={styles.btn} id={styles.deleteBtn} onClick={() => deleteBook(book.id)}>Excluir</button>
