@@ -2,31 +2,28 @@ import styles from './register.module.css'
 import Header from '../../components/header/header.jsx'
 import Footer from '../../components/footer/footer.jsx'
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 
 export default function Register() {
+
     const navigate = useNavigate();
-
-    const [isbn, setIsbn] = useState('');
-    const [title, setTitle] = useState('');
-    const [author, setAuthor] = useState('');
-    const [year, setYear] = useState('');
-    const [pages, setPages] = useState('');
-
     const { id } = useParams();
-
+    const { state } = useLocation();
+    const selectedBook = state ? state.book : undefined;
+    console.log(selectedBook);
+    
+    const [book, setBook] = useState({
+        isbn: '',
+        title: '',
+        author: '',
+        year: '',
+        pages: ''
+    });
+    
     async function handleSubmit(event) {
 
+        
         event.preventDefault();
-
-        const book = {
-            isbn,
-            title,
-            author,
-            year,
-            pages
-        };
 
         try {
             const response = await fetch(
@@ -41,9 +38,8 @@ export default function Register() {
             );
 
             const data = await response.json();
-
-            console.log(data);
             alert('Livro cadastrado com sucesso!');
+
             navigate('/');
         } catch (error) {
             console.error(error);
@@ -51,50 +47,37 @@ export default function Register() {
     }
 
     useEffect(() => {
-
-        if (!id) return;
-
-        async function loadBook() {
-
-            console.log('ID:', id);
+        function loadBook() {
+            if (!selectedBook) return
 
             try {
-
-                const response = await fetch(
-                    `http://localhost:3000/books/${id}`
-                );
-
-                const dataArray = await response.json();
-                const data = dataArray[0]
-
-                console.log('Livro recebido:', data);
-
-                setIsbn(data.isbn);
-                setTitle(data.title);
-                setAuthor(data.name);
-                setYear(data.year);
-                setPages(data.pages);
-
+                setBook({
+                    isbn: selectedBook.isbn,
+                    title: selectedBook.title,
+                    author: selectedBook.name,
+                    year: selectedBook.year,
+                    pages: selectedBook.pages
+                });
             } catch (error) {
                 console.error(error);
             }
         }
-
         loadBook();
 
-    }, [id]);
+    }, [selectedBook]);
+
+    function handleChange(event) {
+        const { name, value } = event.target;
+
+        setBook(prev => ({
+            ...prev,
+            [name]: value
+        }));
+    }
 
     async function updateBook(event) {
 
         event.preventDefault();
-
-        const book = {
-            isbn,
-            title,
-            author,
-            year,
-            pages
-        };
 
         try {
 
@@ -126,47 +109,49 @@ export default function Register() {
         <>
             <Header></Header>
 
-            <div className={styles.bodyContent}>
+            <main>
+                <div className={styles.bodyContent}>
 
-                <div className={styles.formContainer}>
+                    <div className={styles.formContainer}>
 
-                    <form action="" className={styles.form} onSubmit={id ? updateBook : handleSubmit}>
+                        <form action="" className={styles.form} onSubmit={id ? updateBook : handleSubmit}>
 
-                        <article className={styles.formGroup}>
-                            <label htmlFor={styles.isbnInput}>ISBN: </label>
-                            <input type="text" id={styles.isbnInput} value={isbn} onChange={(e) => setIsbn(e.target.value)} required />
-                            <span></span>
-                        </article>
+                            <article className={styles.formGroup}>
+                                <label htmlFor={styles.isbnInput}>ISBN: </label>
+                                <input type="text" id={styles.isbnInput} name="isbn" value={book.isbn} onChange={handleChange} required />
+                                <span></span>
+                            </article>
 
-                        <article className={styles.formGroup}>
-                            <label htmlFor={styles.titleInput}>Title: </label>
-                            <input type="text" id={styles.titleInput} value={title} onChange={(e) => setTitle(e.target.value)} required />
-                            <span></span>
-                        </article>
+                            <article className={styles.formGroup}>
+                                <label htmlFor={styles.titleInput}>Title: </label>
+                                <input type="text" id={styles.titleInput} name="title" value={book.title} onChange={handleChange} required />
+                                <span></span>
+                            </article>
 
-                        <article className={styles.formGroup}>
-                            <label htmlFor={styles.authorInput}>Author: </label>
-                            <input type="text" id={styles.authorInput} value={author} onChange={(e) => setAuthor(e.target.value)} required />
-                            <span></span>
-                        </article>
+                            <article className={styles.formGroup}>
+                                <label htmlFor={styles.authorInput}>Author: </label>
+                                <input type="text" id={styles.authorInput} name="author" value={book.author} onChange={handleChange} required />
+                                <span></span>
+                            </article>
 
-                        <article className={styles.formGroup}>
-                            <label htmlFor={styles.yearInput}>Year: </label>
-                            <input type="text" id={styles.yearInput} value={year} onChange={(e) => setYear(e.target.value)} required />
-                            <span></span>
-                        </article>
+                            <article className={styles.formGroup}>
+                                <label htmlFor={styles.yearInput}>Year: </label>
+                                <input type="text" id={styles.yearInput} name="year" value={book.year} onChange={handleChange} required />
+                                <span></span>
+                            </article>
 
-                        <article className={styles.formGroup}>
-                            <label htmlFor={styles.pagesInput}>Pages: </label>
-                            <input type="text" id={styles.pagesInput} value={pages} onChange={(e) => setPages(e.target.value)} required />
-                            <span></span>
-                        </article>
+                            <article className={styles.formGroup}>
+                                <label htmlFor={styles.pagesInput}>Pages: </label>
+                                <input type="text" id={styles.pagesInput} name="pages" value={book.pages} onChange={handleChange} required />
+                                <span></span>
+                            </article>
 
-                        <button className={styles.btn}> {id ? 'Update' : 'Register'}</button>
-                    </form>
+                            <button className={styles.btn}> {id ? 'Update' : 'Register'}</button>
+                        </form>
 
+                    </div>
                 </div>
-            </div>
+            </main>
 
             <Footer></Footer>
         </>
