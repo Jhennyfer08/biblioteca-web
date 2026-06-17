@@ -49,6 +49,12 @@ DB_NAME=library
 ```bash
 npm install
 ```
+
+- package.json dependencies:
+  - mysql2
+  - express
+  - cors
+  
 `Set-ExecutionPolicy RemoteSigned` - Serve para habilitar a execução de scripts no *Powershell* caso esteja desabilitado pelo Sistema.
 
 - Executar o arquivo **library.sql** no Banco de Dados. Lembrando de ativar a conexão no topo do arquivo.

@@ -1,7 +1,13 @@
 import express from 'express';
 import { Books } from './classes/books.js';
 import cors from "cors";
-await process.loadEnvFile('.env');
+
+try {
+    await process.loadEnvFile('prod.env');
+} catch (error) {
+    console.log('Impossible to read .env file');
+}
+
 
 const app = express();
 app.use(cors());
