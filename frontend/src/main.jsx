@@ -2,14 +2,15 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import App from './App.jsx'
-import './index.css'
+import './main.css'
 
-import Register from './pages/register/register.jsx'
+import Register from './pages/register/register.jsx'  
+import Books from './pages/books/books.jsx'  
 
 const pages = createBrowserRouter([
   {
     path: '/',
-    element: <App/>
+    element: <Books/>
     // children: [
     //   { path: '/book-register', element: <Register/> }
     // ]

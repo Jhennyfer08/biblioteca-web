@@ -107,25 +107,11 @@ Executa o servidor:
   - .gitignore
   - README.md
   - eslint.config.js
+  - index.css
+  - App.jsx 
   - ./src/assets
   - ./src/App.css
   - public/** 
-
-
-### Limpar arquivos: 
-- App.jsx 
-```js
-export default function App() {
-  
-  return (
-    <>
-    </>
-  )
-}
-```
-- index.css
-```
-```
 
 ### Bibliotecas do NPM
 
