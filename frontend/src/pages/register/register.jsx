@@ -27,7 +27,7 @@ export default function Register() {
 
         try {
             const response = await fetch(
-                'http://localhost:3000/books',
+                'https://biblioteca-web.up.railway.app/books',
                 {
                     method: 'POST',
                     headers: {
@@ -82,7 +82,7 @@ export default function Register() {
         try {
 
             const response = await fetch(
-                `http://localhost:3000/books/${id}`,
+                `https://biblioteca-web.up.railway.app/books/${id}`,
                 {
                     method: 'PUT',
                     headers: {

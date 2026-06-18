@@ -10,7 +10,7 @@ export default function BookDisplay() {
     useEffect(() => {
         async function loadBooks() {
             try {
-                const response = await fetch('http://localhost:3000/books');
+                const response = await fetch('https://biblioteca-web.up.railway.app/books');
                 const data = await response.json();
 
                 setBooks(data);
@@ -24,7 +24,7 @@ export default function BookDisplay() {
 
     async function deleteBook(id) {
         try {
-            const response = await fetch(`http://localhost:3000/books/${id}`, { method: 'DELETE' });
+            const response = await fetch(`https://biblioteca-web.up.railway.app/books/${id}`, { method: 'DELETE' });
 
             setBooks(prev =>
                 prev.filter(book => book.id !== id)
