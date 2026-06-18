@@ -1,5 +1,6 @@
 node_modules/
+trash/
+frontend/dist/
 package-lock.json
 tempCodeRunnerFile.js
 *.env
-trash/
