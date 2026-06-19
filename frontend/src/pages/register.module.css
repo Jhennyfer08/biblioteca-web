@@ -1,6 +1,10 @@
+.page{
+    flex: 1;
+    width: 100%;
+    max-width: 800px;
 
-.bodyContent {
-    min-height: calc(100vh - 42vh);
+    margin: 0 auto;
+    padding: 30px;
 }
 
 .formContainer {
@@ -12,7 +16,7 @@
 }
 
 .form {
-    width: 40%;
+    width: 100%;
     padding: var(--space-12px);
     border-radius: 8px;
     border: 2px solid var(--primary-color);

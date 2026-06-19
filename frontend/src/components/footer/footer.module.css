@@ -1,9 +1,6 @@
 .footerContainer {
     width: 100%;
     height: auto;
-    position: absolute;
-    top: 100%;
-    bottom: 0px;
     margin-top: var(--space-64px);
     padding: var(--space-32px) 15%;
     padding-top: var(--space-64px);
@@ -26,13 +23,6 @@
     justify-content: center;
     gap: var(--space-24px);
     font-size: 25px;
-}
-
-.footerInfo {
-    display: flex;
-    justify-content: center;
-    gap: var(--space-24px);
-    white-space: nowrap;
 }
 
 .footerCopyRight {

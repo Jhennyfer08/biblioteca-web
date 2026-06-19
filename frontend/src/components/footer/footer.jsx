@@ -12,12 +12,6 @@ export default function Footer(){
                 <FaWhatsapp />
             </div>
 
-            <div className={styles.footerInfo}>
-                <a href="">Sobre</a>
-                <a href="">Termos de Uso</a>
-                <a href="">Política de Privacidade</a>
-            </div>
-
             <div className={styles.footerCopyRight}>
                 <p>&copy; 2026 All rights reserved to Lib.go</p>
             </div>

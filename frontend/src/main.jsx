@@ -3,8 +3,8 @@ import { createRoot } from 'react-dom/client'
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import './main.css'
 
-import Register from './pages/register/register.jsx'  
-import Books from './pages/books/books.jsx'  
+import Register from './pages/register.jsx'  
+import Books from './pages/books.jsx'  
 
 const pages = createBrowserRouter([
   {

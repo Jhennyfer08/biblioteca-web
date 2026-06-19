@@ -1,3 +1,7 @@
+.page {
+    flex: 1;
+}
+
 .tableContainer {
     width: 70%;
     display: flex;
@@ -20,28 +24,29 @@ thead {
     background-color: #0d494267;
 }
 
-th, td {
+th,
+td {
     padding: var(--space-4px);
     text-align: center;
 }
 
 .btn {
     width: 90%;
-    color:#fff;
+    color: #fff;
     padding: var(--space-8px) var(--space-4px);
     border-radius: 8px;
     border: none;
     cursor: pointer;
 }
 
-.btn:hover{
+.btn:hover {
     filter: brightness(120%);
 }
 
-#editBtn{
+#editBtn {
     background-color: var(--warning-color);
 }
 
-#deleteBtn{
+#deleteBtn {
     background-color: var(--error-color);
 }

@@ -1,6 +1,6 @@
 import styles from './register.module.css'
-import Header from '../../components/header/header.jsx'
-import Footer from '../../components/footer/footer.jsx'
+import Header from '../components/header/header.jsx'
+import Footer from '../components/footer/footer.jsx'
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 
@@ -11,7 +11,7 @@ export default function Register() {
     const { state } = useLocation();
     const selectedBook = state ? state.book : undefined;
     console.log(selectedBook);
-    
+
     const [book, setBook] = useState({
         isbn: '',
         title: '',
@@ -19,10 +19,10 @@ export default function Register() {
         year: '',
         pages: ''
     });
-    
+
     async function handleSubmit(event) {
 
-        
+
         event.preventDefault();
 
         try {
@@ -109,47 +109,45 @@ export default function Register() {
         <>
             <Header></Header>
 
-            <main>
-                <div className={styles.bodyContent}>
+            <main className={styles.page}>
 
-                    <div className={styles.formContainer}>
+                <div className={styles.formContainer}>
 
-                        <form action="" className={styles.form} onSubmit={id ? updateBook : handleSubmit}>
+                    <form action="" className={styles.form} onSubmit={id ? updateBook : handleSubmit}>
 
-                            <article className={styles.formGroup}>
-                                <label htmlFor={styles.isbnInput}>ISBN: </label>
-                                <input type="text" id={styles.isbnInput} name="isbn" value={book.isbn} onChange={handleChange} required />
-                                <span></span>
-                            </article>
+                        <article className={styles.formGroup}>
+                            <label htmlFor={styles.isbnInput}>ISBN: </label>
+                            <input type="text" id={styles.isbnInput} name="isbn" value={book.isbn} onChange={handleChange} required />
+                            <span></span>
+                        </article>
 
-                            <article className={styles.formGroup}>
-                                <label htmlFor={styles.titleInput}>Title: </label>
-                                <input type="text" id={styles.titleInput} name="title" value={book.title} onChange={handleChange} required />
-                                <span></span>
-                            </article>
+                        <article className={styles.formGroup}>
+                            <label htmlFor={styles.titleInput}>Title: </label>
+                            <input type="text" id={styles.titleInput} name="title" value={book.title} onChange={handleChange} required />
+                            <span></span>
+                        </article>
 
-                            <article className={styles.formGroup}>
-                                <label htmlFor={styles.authorInput}>Author: </label>
-                                <input type="text" id={styles.authorInput} name="author" value={book.author} onChange={handleChange} required />
-                                <span></span>
-                            </article>
+                        <article className={styles.formGroup}>
+                            <label htmlFor={styles.authorInput}>Author: </label>
+                            <input type="text" id={styles.authorInput} name="author" value={book.author} onChange={handleChange} required />
+                            <span></span>
+                        </article>
 
-                            <article className={styles.formGroup}>
-                                <label htmlFor={styles.yearInput}>Year: </label>
-                                <input type="text" id={styles.yearInput} name="year" value={book.year} onChange={handleChange} required />
-                                <span></span>
-                            </article>
+                        <article className={styles.formGroup}>
+                            <label htmlFor={styles.yearInput}>Year: </label>
+                            <input type="text" id={styles.yearInput} name="year" value={book.year} onChange={handleChange} required />
+                            <span></span>
+                        </article>
 
-                            <article className={styles.formGroup}>
-                                <label htmlFor={styles.pagesInput}>Pages: </label>
-                                <input type="text" id={styles.pagesInput} name="pages" value={book.pages} onChange={handleChange} required />
-                                <span></span>
-                            </article>
+                        <article className={styles.formGroup}>
+                            <label htmlFor={styles.pagesInput}>Pages: </label>
+                            <input type="text" id={styles.pagesInput} name="pages" value={book.pages} onChange={handleChange} required />
+                            <span></span>
+                        </article>
 
-                            <button className={styles.btn}> {id ? 'Update' : 'Register'}</button>
-                        </form>
+                        <button className={styles.btn}> {id ? 'Update' : 'Register'}</button>
+                    </form>
 
-                    </div>
                 </div>
             </main>
 

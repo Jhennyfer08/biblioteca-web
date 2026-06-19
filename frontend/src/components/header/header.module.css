@@ -56,12 +56,7 @@ a {
 
 .menuIcon {
     width: 100%;
-    font-size: 25px;
+    font-size: 1.7em;
     cursor: pointer;
 }
 
-a .menuIcon {
-    width: 100%;
-    font-size: 25px;
-    cursor: pointer;
-}
