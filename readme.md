@@ -78,7 +78,7 @@ git  config --global user.name "Your Name"
 
 ---
 
-# Configuração do Frontend
+## Configuração do Frontend
 
 - **Vite**: Criar a pasta /frontend com o React no projeto
 ```bash 
@@ -122,6 +122,31 @@ Executa o servidor:
 - **React Icons**: Ícones para o React
 ```
   npm install react-icons
+```
+
+### Como Executar O Projeto
+---
+
+- **Backend**: Posicione o cursos na pasta /backend e execute o comando:
+```powershell 
+ npm install
+```
+- Depois execute o arquivo que alimenta o banco com o arquivo CSV:
+```powershell 
+ node "c:\Users\jhenn\OneDrive\Imagens\Documentos\biblioteca-web\backend\js\main.js"
+```
+---
+
+- **Frontend**: Posicione o cursos na pasta /frontend e execute os comandos:
+```powershell 
+ npm run build
+```
+```powershell 
+ npm run run dev
+```
+- Após isso dê um **CTRL + CLIQUE** no link http fornecido ou o digite no seu navegador:
+```powershell 
+ http://localhost:5173/
 ```
 
 ---
